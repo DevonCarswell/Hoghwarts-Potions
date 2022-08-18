@@ -28,34 +28,5 @@ namespace HogwartsPotions.Data
             modelBuilder.Entity<Ingredient>().ToTable("Ingredient");
         }
 
-        public async Task AddRoom(Room room)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Room> GetRoom(long roomId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Room>> GetAllRooms()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task UpdateRoom(Room room)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task DeleteRoom(long id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<Room>> GetRoomsForRatOwners()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
