@@ -17,7 +17,9 @@ namespace HogwartsPotions.Data.Repositories
         }
         public async Task AddRoom(Room room)
         {
-            throw new System.NotImplementedException();
+            _context.Rooms.Add(room);
+            await _context.SaveChangesAsync();
+
         }
 
         public Task<Room> GetRoom(long roomId)
@@ -27,7 +29,7 @@ namespace HogwartsPotions.Data.Repositories
 
         public Task<List<Room>> GetAllRooms()
         {
-            throw new System.NotImplementedException();
+            return _context.Rooms.ToListAsync();
         }
 
         public Task UpdateRoom(Room room)
