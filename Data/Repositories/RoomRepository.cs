@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HogwartsPotions.Interfaces;
 using HogwartsPotions.Models.Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace HogwartsPotions.Data.Repositories
@@ -24,7 +25,7 @@ namespace HogwartsPotions.Data.Repositories
 
         public Task<Room> GetRoom(long roomId)
         {
-            throw new System.NotImplementedException();
+            return _context.Rooms.FirstOrDefaultAsync(r => r.ID == roomId);
         }
 
         public Task<List<Room>> GetAllRooms()
@@ -32,14 +33,29 @@ namespace HogwartsPotions.Data.Repositories
             return _context.Rooms.ToListAsync();
         }
 
-        public Task UpdateRoom(Room room)
+        public void UpdateRoom(long id, Room room)
         {
-            throw new System.NotImplementedException();
+            var roomToUpdate = GetRoom(id).Result;
+            if (roomToUpdate != null)
+            {
+                room.ID = roomToUpdate.ID;
+                _context.Rooms.Update(room);
+               
+            }
+            _context.SaveChangesAsync();
+           
         }
 
-        public Task DeleteRoom(long id)
+        public async Task DeleteRoom(long id)
         {
-            throw new System.NotImplementedException();
+            var roomToDelete = _context.Rooms.FirstOrDefaultAsync(r => r.ID == id).Result;
+            if (roomToDelete != null)
+            {
+                _context.Rooms.Remove(roomToDelete);
+
+            }
+
+            await _context.SaveChangesAsync();
         }
 
         public Task<List<Room>> GetRoomsForRatOwners()
@@ -47,9 +63,6 @@ namespace HogwartsPotions.Data.Repositories
             throw new System.NotImplementedException();
         }
 
-        public void Update(Room updatedRoom)
-        {
-            throw new System.NotImplementedException();
-        }
+    
     }
 }

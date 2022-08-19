@@ -38,7 +38,7 @@ namespace HogwartsPotions.Controllers
         [HttpPut("/{id}")]
         public void UpdateRoomById(long id, [FromBody] Room updatedRoom)
         {
-            _roomRepository.Update(updatedRoom);
+            _roomRepository.UpdateRoom(id,updatedRoom);
         }
 
         [HttpDelete("/{id}")]
@@ -52,5 +52,6 @@ namespace HogwartsPotions.Controllers
         {
             return await _roomRepository.GetRoomsForRatOwners();
         }
+
     }
 }
