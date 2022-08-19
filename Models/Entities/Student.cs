@@ -13,6 +13,6 @@ namespace HogwartsPotions.Models.Entities
         public PetType PetType { get; set; }
         
         public long RoomId { get; set; }
-        public Room Room { get; set; }
+        //public Room Room { get; set; }
     }
 }

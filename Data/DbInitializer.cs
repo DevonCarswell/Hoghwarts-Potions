@@ -32,6 +32,10 @@ namespace HogwartsPotions.Data
             {
                 context.Rooms.Add(room);
             }
+
+            //harry.Room = (Room)rooms.Where(r => r.ID == harry.RoomId);
+            //hermione.Room = (Room)rooms.Where(r => r.ID == hermione.RoomId);
+            //melfoy.Room = (Room)rooms.Where(r => r.ID == melfoy.RoomId);
             context.SaveChanges();
         }
     }

@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using HogwartsPotions.Data;
 using HogwartsPotions.Data.Repositories;
 using HogwartsPotions.Interfaces;
@@ -24,7 +25,8 @@ namespace HogwartsPotions
         {
             services.AddDbContext<HogwartsContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             services.AddControllersWithViews();
             services.AddScoped<IRoomRepository, RoomRepository>();
         }

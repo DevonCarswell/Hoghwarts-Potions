@@ -30,7 +30,7 @@ namespace HogwartsPotions.Data.Repositories
 
         public Task<List<Room>> GetAllRooms()
         {
-            return _context.Rooms.ToListAsync();
+            return _context.Rooms.Include(r => r.Residents).ToListAsync();
         }
 
         public void UpdateRoom(long id, Room room)
