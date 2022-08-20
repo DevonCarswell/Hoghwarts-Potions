@@ -30,6 +30,9 @@ namespace HogwartsPotions
             services.AddControllersWithViews();
             services.AddScoped<IRoomRepository, RoomRepository>();
             services.AddScoped<IStudent, StudentRepository>();
+            services.AddScoped<IRecipe, RecipeRepository>();
+            services.AddScoped<IIngredient, IngredientRepository>();
+            services.AddScoped<IPotion, PotionRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
