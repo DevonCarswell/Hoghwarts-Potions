@@ -14,7 +14,7 @@ namespace HogwartsPotions.Models.Entities
 
         public Room()
         {
-            Residents = new();
+            Residents = new HashSet<Student>();
         }
     }
 }

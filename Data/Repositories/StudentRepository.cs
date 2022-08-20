@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HogwartsPotions.Data.Repositories
 {
-    public class StudentRepository : IStudentRepository
+    public class StudentRepository : IStudent
     {
         private readonly HogwartsContext _context;
 
@@ -33,16 +33,20 @@ namespace HogwartsPotions.Data.Repositories
             return _context.Students.ToListAsync();
         }
 
-        public void UpdateStudent(long id, Student Student)
+        public void UpdateStudentRoomId(HashSet<Student> students)
         {
-            var StudentToUpdate = GetStudent(id).Result;
-            if (StudentToUpdate != null)
+            
+            if (students.Count > 0)
             {
-                Student.ID = StudentToUpdate.ID;
-                _context.Students.Update(Student);
+                foreach (var student in students)
+                {
+                    student.RoomId = null;
+                    _context.Students.Update(student);
+                    _context.SaveChanges();
+                }
 
             }
-            _context.SaveChangesAsync();
+            
 
         }
 

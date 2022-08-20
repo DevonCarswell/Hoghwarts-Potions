@@ -39,11 +39,12 @@ namespace HogwartsPotions.Data.Repositories
             if (roomToUpdate != null)
             {
                 room.ID = roomToUpdate.ID;
+                _context.Entry(roomToUpdate).State = EntityState.Detached;
+                _context.Entry(room).State = EntityState.Modified;
                 _context.Rooms.Update(room);
-               
+                _context.SaveChanges();
             }
-            _context.SaveChangesAsync();
-           
+            
         }
 
         public async Task DeleteRoom(long id)
@@ -51,6 +52,7 @@ namespace HogwartsPotions.Data.Repositories
             var roomToDelete = _context.Rooms.FirstOrDefaultAsync(r => r.ID == id).Result;
             if (roomToDelete != null)
             {
+                
                 _context.Rooms.Remove(roomToDelete);
 
             }

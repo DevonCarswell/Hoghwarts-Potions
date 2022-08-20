@@ -9,8 +9,7 @@ namespace HogwartsPotions.Interfaces
         Task AddStudent(Student Student);
         Task<Student> GetStudent(long StudentId);
         Task<List<Student>> GetAllStudents();
-        void UpdateStudent(long id, Student Student);
+        void UpdateStudentRoomId(HashSet<Student> students);
         Task DeleteStudent(long id);
-        Task<List<Student>> GetStudentsForRatOwners();
     }
 }
