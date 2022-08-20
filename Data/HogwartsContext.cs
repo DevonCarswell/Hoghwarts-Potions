@@ -15,6 +15,7 @@ namespace HogwartsPotions.Data
         public DbSet<Recipe> Recipes { get; set; }
 
         public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<Potion> Potions { get; set; }
 
         public HogwartsContext(DbContextOptions<HogwartsContext> options) : base(options)
         {
@@ -26,6 +27,7 @@ namespace HogwartsPotions.Data
             modelBuilder.Entity<Room>().ToTable("Room");
             modelBuilder.Entity<Recipe>().ToTable("Recipe");
             modelBuilder.Entity<Ingredient>().ToTable("Ingredient");
+            modelBuilder.Entity<Potion>().ToTable("Potion");
             //modelBuilder.Entity<Student>().HasOne(m => m.Room).WithMany(r => r.Residents).HasForeignKey(m => m.RoomId);
         }
 
