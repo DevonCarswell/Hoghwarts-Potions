@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HogwartsPotions.Interfaces;
 using HogwartsPotions.Models.Entities;
+using HogwartsPotions.Models.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -60,9 +61,10 @@ namespace HogwartsPotions.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public Task<List<Room>> GetRoomsForRatOwners()
+        public async Task<List<Room>> GetRoomsForRatOwners()
         {
-            throw new System.NotImplementedException();
+            return await _context.Rooms.Include(r => r.Residents)
+                .Where(r => r.Residents.All(s => s.PetType != PetType.Cat && s.PetType != PetType.Owl) ).ToListAsync();
         }
 
     

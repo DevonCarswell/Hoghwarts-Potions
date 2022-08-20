@@ -52,7 +52,7 @@ namespace HogwartsPotions.Controllers
             await _roomRepository.DeleteRoom(id);
         }
 
-        [HttpGet("/rat-owners")]
+        [HttpGet("rat-owners")]
         public async Task<List<Room>> GetRoomsForRatOwners()
         {
             return await _roomRepository.GetRoomsForRatOwners();
