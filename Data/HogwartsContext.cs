@@ -8,7 +8,6 @@ namespace HogwartsPotions.Data
 {
     public class HogwartsContext : DbContext
     {
-        public const int MaxIngredientsForPotions = 5;
         public DbSet<Student> Students { get; set; }
         public DbSet<Room> Rooms { get; set; }
 

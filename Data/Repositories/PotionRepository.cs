@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using HogwartsPotions.Interfaces;
 using HogwartsPotions.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HogwartsPotions.Data.Repositories
 {
@@ -25,7 +26,7 @@ namespace HogwartsPotions.Data.Repositories
 
         public Task<List<Potion>> GetAllPotions()
         {
-            throw new System.NotImplementedException();
+            return _context.Potions.Include(p => p.Ingredients).ToListAsync();
         }
 
         public Task DeletePotion(long id)
