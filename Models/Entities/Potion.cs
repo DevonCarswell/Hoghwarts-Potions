@@ -16,9 +16,9 @@ namespace HogwartsPotions.Models.Entities
         public BrewingStatus BrewingStatus { get; set; } = BrewingStatus.Brew;
         public HashSet<Ingredient> Ingredients { get; set; } = new HashSet<Ingredient>();
 
-        public long StudentId { get; set; }
+        // public long StudentId { get; set; }
         public Student BrewedBy { get; set; }
-        public long RecipeId { get; set; }
+        // public long RecipeId { get; set; }
         public Recipe Recipe { get; set; }
     }
 }

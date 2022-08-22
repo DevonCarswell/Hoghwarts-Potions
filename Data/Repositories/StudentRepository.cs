@@ -40,7 +40,7 @@ namespace HogwartsPotions.Data.Repositories
             {
                 foreach (var student in students)
                 {
-                    student.RoomId = null;
+                    student.Room = null;
                     _context.Students.Update(student);
                     _context.SaveChanges();
                 }

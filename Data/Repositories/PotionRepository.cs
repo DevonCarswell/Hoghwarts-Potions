@@ -14,7 +14,9 @@ namespace HogwartsPotions.Data.Repositories
         {
             _context = context;
         }
-        public Task AddPotion(Potion Potion)
+
+
+        public Task AddPotion(Potion Potion, long studentId, HashSet<Ingredient> ingredients)
         {
             throw new System.NotImplementedException();
         }

@@ -24,7 +24,7 @@ namespace HogwartsPotions.Data
             var hermione = new Student()
             { Name = "Hermione Granger", HouseType = HouseType.Gryffindor, PetType = PetType.Cat };
             var melfoy = new Student() { Name = "Draco Malfoy", HouseType = HouseType.Slytherin, PetType = PetType.None };
-            context.Students.AddRange(new List<Student>(){harry,hermione,melfoy});
+           
 
             //Rooms
             var rooms = new HashSet<Room>()
@@ -33,13 +33,10 @@ namespace HogwartsPotions.Data
                 new Room() {Capacity = 2, Residents = new HashSet<Student>() {hermione}},
                 new Room() {Capacity = 1, Residents = new HashSet<Student>() {melfoy}}
             };
-            foreach (var room in rooms)
-            {
-                context.Rooms.Add(room);
-            }
 
 
-            // Ingredients
+
+            //// Ingredients
             var specialOne = new Ingredient() { Name = "The special one" };
             var banana = new Ingredient() { Name = "Banana" };
             var newtSpleens = new Ingredient() { Name = "Newt spleens" };
@@ -63,10 +60,10 @@ namespace HogwartsPotions.Data
             var alihotsy = new Ingredient() { Name = "Alihotsy" };
             var peppermint = new Ingredient() { Name = "Peppermint" };
             var eeleyes = new Ingredient() { Name = "Eel eyes" };
-            context.Ingredients.AddRange(new List<Ingredient>()
-            {
-                specialOne,banana,newtSpleens, orangeSnake,greenLeaf,pufferFishEyes,driedNettles,batSpleens, mint,valerianSprigs,fireSeeds,powderedDragonHorn,lavender,gomasBarbadensis,asianDragonHair,petroleumJelly,jobberknollFeathers,stewedMandrake,powderedSage,galanthusNivalis,alihotsy,peppermint,eeleyes,
-            });
+            //context.Ingredients.AddRange(new List<Ingredient>()
+            //{
+            //    specialOne,banana,newtSpleens, orangeSnake,greenLeaf,pufferFishEyes,driedNettles,batSpleens, mint,valerianSprigs,fireSeeds,powderedDragonHorn,lavender,gomasBarbadensis,asianDragonHair,petroleumJelly,jobberknollFeathers,stewedMandrake,powderedSage,galanthusNivalis,alihotsy,peppermint,eeleyes,
+            //});
 
 
             //Recipes
@@ -101,16 +98,18 @@ namespace HogwartsPotions.Data
                 },
                 Student = hermione
             };
-            context.Recipes.AddRange(new List<Recipe>()
-            {
-                fireBreathingPotionRecipe, sleekeazysHairPotionRecipe, memoryPotionRecipe
-            });
+            //context.Recipes.AddRange(new List<Recipe>()
+            //{
+            //    fireBreathingPotionRecipe, sleekeazysHairPotionRecipe, memoryPotionRecipe
+            //});
 
 
             //Potions
             var fireBreathingPotion = new Potion()
             {
-                BrewedBy = harry, BrewingStatus = BrewingStatus.Discovery, Name = "Fire-Breathing Potion",
+                BrewedBy = harry,
+                BrewingStatus = BrewingStatus.Discovery,
+                Name = "Fire-Breathing Potion",
                 Recipe = fireBreathingPotionRecipe,
                 Ingredients = new HashSet<Ingredient>()
                 {
@@ -121,7 +120,9 @@ namespace HogwartsPotions.Data
 
             var sleekeazysHairPotion = new Potion()
             {
-                BrewedBy = melfoy, BrewingStatus = BrewingStatus.Discovery, Name = "Sleekeazy's Hair Potion",
+                BrewedBy = melfoy,
+                BrewingStatus = BrewingStatus.Discovery,
+                Name = "Sleekeazy's Hair Potion",
                 Recipe = sleekeazysHairPotionRecipe,
                 Ingredients = new HashSet<Ingredient>()
                 {
@@ -132,7 +133,9 @@ namespace HogwartsPotions.Data
 
             var memoryPotion = new Potion()
             {
-                BrewedBy = hermione, BrewingStatus = BrewingStatus.Brew, Name = "Memory Potion",
+                BrewedBy = hermione,
+                BrewingStatus = BrewingStatus.Brew,
+                Name = "Memory Potion",
                 Recipe = memoryPotionRecipe,
                 // Need peppermint to change BrewingStatus to BrewingStatus.Discovery
                 Ingredients = new HashSet<Ingredient>()
@@ -140,8 +143,17 @@ namespace HogwartsPotions.Data
                     jobberknollFeathers, stewedMandrake, powderedSage, galanthusNivalis,
                 },
             };
+
+
             context.Potions.AddRange(new List<Potion>(){fireBreathingPotion,sleekeazysHairPotion,memoryPotion});
 
+
+            // context.Students.AddRange(new List<Student>() { harry, hermione, melfoy });
+
+            foreach (var room in rooms)
+            {
+                context.Rooms.Add(room);
+            }
 
             context.SaveChanges();
         }
