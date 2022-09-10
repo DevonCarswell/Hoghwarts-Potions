@@ -4,7 +4,7 @@ using HogwartsPotions.Models.Entities;
 
 namespace HogwartsPotions.Interfaces
 {
-    public interface IIngredient
+    public interface IIngredientService
     {
         Task AddIngredient(Ingredient Ingredient);
         Task<Ingredient> GetIngredient(long IngredientId);

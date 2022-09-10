@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HogwartsPotions.Data.Repositories
 {
-    public class IngredientRepository : IIngredient
+    public class IngredientService : IIngredientService
     {
         private readonly HogwartsContext _context;
 

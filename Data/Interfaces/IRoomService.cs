@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HogwartsPotions.Interfaces
 {
-    public interface IRoomRepository
+    public interface IRoomService
     {
         Task AddRoom(Room room);
         Task<Room> GetRoom(long roomId);

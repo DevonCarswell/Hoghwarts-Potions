@@ -28,11 +28,11 @@ namespace HogwartsPotions
             services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
             services.AddControllersWithViews();
-            services.AddScoped<IRoomRepository, RoomRepository>();
-            services.AddScoped<IStudent, StudentRepository>();
-            services.AddScoped<IRecipe, RecipeRepository>();
-            services.AddScoped<IIngredient, IngredientRepository>();
-            services.AddScoped<IPotion, PotionRepository>();
+            services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IRecipeService, RecipeService>();
+            services.AddScoped<IIngredientService, IngredientServiceService>();
+            services.AddScoped<IPotionService, PotionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

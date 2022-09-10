@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HogwartsPotions.Data.Repositories
 {
-    public class StudentRepository : IStudent
+    public class StudentService : IStudentService
     {
         private readonly HogwartsContext _context;
 
-        public StudentRepository(HogwartsContext context)
+        public StudentService(HogwartsContext context)
         {
             _context = context;
         }

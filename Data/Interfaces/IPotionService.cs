@@ -4,10 +4,10 @@ using HogwartsPotions.Models.Entities;
 
 namespace HogwartsPotions.Interfaces
 {
-    public interface IPotion
+    public interface IPotionService
     {
         Task AddPotion(Potion Potion, long studentId, HashSet<Ingredient> ingredients);
-        Task<Potion> GetPotion(long PotionId);
+        Task<Potion> GetPotionById(long PotionId);
         Task<List<Potion>> GetAllPotions();
         Task DeletePotion(long id);
         Task<List<Potion>> GetPotionByStudentId(long studentId);

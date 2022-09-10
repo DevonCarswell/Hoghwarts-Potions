@@ -8,13 +8,13 @@ using System.Linq;
 
 namespace HogwartsPotions.Controllers
 {
-    [ApiController, Route("/room")]
+    [ApiController, Route("[Controller]")]
     public class RoomController : ControllerBase
     {
-        private readonly IRoomRepository _roomRepository;
-        private readonly IStudent _studentRepository;
+        private readonly IRoomService _roomRepository;
+        private readonly IStudentService _studentRepository;
 
-        public RoomController(IRoomRepository roomRepository, IStudent studentRepository)
+        public RoomController(IRoomService roomRepository, IStudentService studentRepository)
         {
             _roomRepository = roomRepository;
             _studentRepository = studentRepository;

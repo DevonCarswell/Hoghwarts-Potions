@@ -8,7 +8,7 @@ namespace HogwartsPotions.Models.Entities
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
-        private const int MaxIngredientsForPotions = 5;
+        
 
 
         public string Name { get; set; }

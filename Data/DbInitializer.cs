@@ -60,10 +60,7 @@ namespace HogwartsPotions.Data
             var alihotsy = new Ingredient() { Name = "Alihotsy" };
             var peppermint = new Ingredient() { Name = "Peppermint" };
             var eeleyes = new Ingredient() { Name = "Eel eyes" };
-            //context.Ingredients.AddRange(new List<Ingredient>()
-            //{
-            //    specialOne,banana,newtSpleens, orangeSnake,greenLeaf,pufferFishEyes,driedNettles,batSpleens, mint,valerianSprigs,fireSeeds,powderedDragonHorn,lavender,gomasBarbadensis,asianDragonHair,petroleumJelly,jobberknollFeathers,stewedMandrake,powderedSage,galanthusNivalis,alihotsy,peppermint,eeleyes,
-            //});
+            
 
 
             //Recipes
@@ -98,10 +95,7 @@ namespace HogwartsPotions.Data
                 },
                 Student = hermione
             };
-            //context.Recipes.AddRange(new List<Recipe>()
-            //{
-            //    fireBreathingPotionRecipe, sleekeazysHairPotionRecipe, memoryPotionRecipe
-            //});
+            
 
 
             //Potions
@@ -148,7 +142,6 @@ namespace HogwartsPotions.Data
             context.Potions.AddRange(new List<Potion>(){fireBreathingPotion,sleekeazysHairPotion,memoryPotion});
 
 
-            // context.Students.AddRange(new List<Student>() { harry, hermione, melfoy });
 
             foreach (var room in rooms)
             {

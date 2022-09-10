@@ -5,11 +5,11 @@ using HogwartsPotions.Models.Entities;
 
 namespace HogwartsPotions.Data.Repositories
 {
-    public class RecipeRepository : IRecipe
+    public class RecipeService : IRecipeService
     {
         private readonly HogwartsContext _context;
 
-        public RecipeRepository(HogwartsContext context)
+        public RecipeService(HogwartsContext context)
         {
             _context = context;
         }

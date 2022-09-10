@@ -4,7 +4,7 @@ using HogwartsPotions.Models.Entities;
 
 namespace HogwartsPotions.Interfaces
 {
-    public interface IStudent
+    public interface IStudentService
     {
         Task AddStudent(Student Student);
         Task<Student> GetStudent(long StudentId);

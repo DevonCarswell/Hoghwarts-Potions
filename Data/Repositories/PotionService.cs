@@ -6,11 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HogwartsPotions.Data.Repositories
 {
-    public class PotionRepository : IPotion
+    public class PotionService : IPotionService
     {
         private readonly HogwartsContext _context;
+        private const int MAX_INGREDIENTS_FOR_POTIONS = 5;
 
-        public PotionRepository(HogwartsContext context)
+        public PotionService(HogwartsContext context)
         {
             _context = context;
         }
@@ -21,19 +22,27 @@ namespace HogwartsPotions.Data.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Task<Potion> GetPotion(long PotionId)
+        public async Task<Potion> GetPotionById(long PotionId)
         {
-            throw new System.NotImplementedException();
+            return await _context.Potions.FirstOrDefaultAsync(p => p.Id == PotionId);
         }
 
         public Task<List<Potion>> GetAllPotions()
         {
-            return _context.Potions.Include(p => p.Ingredients).ToListAsync();
+            return _context.Potions.ToListAsync();
         }
 
-        public Task DeletePotion(long id)
+        public async Task DeletePotion(long id)
         {
-            throw new System.NotImplementedException();
+            var potionToDelete = GetPotionById(id).Result;
+            if (potionToDelete != null)
+            {
+
+                _context.Potions.Remove(potionToDelete);
+
+            }
+
+            await _context.SaveChangesAsync();
         }
 
         public Task<List<Potion>> GetPotionByStudentId(long studentId)

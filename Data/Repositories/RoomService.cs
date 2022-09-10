@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HogwartsPotions.Data.Repositories
 {
-    public class RoomRepository : IRoomRepository
+    public class RoomService : IRoomService
     {
         private readonly HogwartsContext _context;
 
-        public RoomRepository(HogwartsContext context)
+        public RoomService(HogwartsContext context)
         {
             _context = context;
         }
@@ -31,7 +31,7 @@ namespace HogwartsPotions.Data.Repositories
 
         public Task<List<Room>> GetAllRooms()
         {
-            return _context.Rooms.Include(r => r.Residents).ToListAsync();
+            return _context.Rooms.ToListAsync();
         }
 
         public void UpdateRoom(long id, Room room)
@@ -63,7 +63,7 @@ namespace HogwartsPotions.Data.Repositories
 
         public async Task<List<Room>> GetRoomsForRatOwners()
         {
-            return await _context.Rooms.Include(r => r.Residents)
+            return await _context.Rooms
                 .Where(r => r.Residents.All(s => s.PetType != PetType.Cat && s.PetType != PetType.Owl) ).ToListAsync();
         }
 

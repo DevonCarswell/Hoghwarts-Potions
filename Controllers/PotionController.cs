@@ -6,16 +6,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HogwartsPotions.Controllers
 {
-    [ApiController, Route("/potions")]
+    [ApiController, Route("[Controller]")]
     public class PotionController
     {
         
-        private readonly IIngredient _ingredientRepository;
-        private readonly IPotion _potionRepository;
-        private readonly IStudent _studentRepository;
-        private readonly IRecipe _recipeRepository;
+        private readonly IIngredientService _ingredientRepository;
+        private readonly IPotionService _potionRepository;
+        private readonly IStudentService _studentRepository;
+        private readonly IRecipeService _recipeRepository;
 
-        public PotionController(IIngredient ingredientRepository, IPotion potionRepository, IStudent studentRepository, IRecipe recipeRepository)
+        public PotionController(IIngredientService ingredientRepository, IPotionService potionRepository, IStudentService studentRepository, IRecipeService recipeRepository)
         {
             _ingredientRepository = ingredientRepository;
             _potionRepository = potionRepository;
