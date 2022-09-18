@@ -13,7 +13,7 @@ namespace HogwartsPotions.Data
         {
             context.Database.EnsureCreated();
 
-            if (context.Students.Any())
+            if (context.Rooms.Any() || context.Students.Any() || context.Ingredients.Any() || context.Recipes.Any() || context.Potions.Any())
             {
                 return;
             }
@@ -101,7 +101,7 @@ namespace HogwartsPotions.Data
             //Potions
             var fireBreathingPotion = new Potion()
             {
-                BrewedBy = harry,
+                Student = harry,
                 BrewingStatus = BrewingStatus.Discovery,
                 Name = "Fire-Breathing Potion",
                 Recipe = fireBreathingPotionRecipe,
@@ -114,7 +114,7 @@ namespace HogwartsPotions.Data
 
             var sleekeazysHairPotion = new Potion()
             {
-                BrewedBy = melfoy,
+                Student = melfoy,
                 BrewingStatus = BrewingStatus.Discovery,
                 Name = "Sleekeazy's Hair Potion",
                 Recipe = sleekeazysHairPotionRecipe,
@@ -127,7 +127,7 @@ namespace HogwartsPotions.Data
 
             var memoryPotion = new Potion()
             {
-                BrewedBy = hermione,
+                Student = hermione,
                 BrewingStatus = BrewingStatus.Brew,
                 Name = "Memory Potion",
                 Recipe = memoryPotionRecipe,

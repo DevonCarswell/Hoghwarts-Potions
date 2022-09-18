@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using HogwartsPotions.Interfaces;
 using HogwartsPotions.Models.Entities;
+using HogwartsPotions.Models.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace HogwartsPotions.Data.Repositories
@@ -17,9 +19,20 @@ namespace HogwartsPotions.Data.Repositories
         }
 
 
-        public Task AddPotion(Potion Potion, long studentId, HashSet<Ingredient> ingredients)
+        public async Task<Potion> AddPotion(Potion potion)
         {
-            throw new System.NotImplementedException();
+            var potions = await GetAllPotions();
+            if (potion.Ingredients.Count == MAX_INGREDIENTS_FOR_POTIONS)
+            {
+                foreach (var mixture in potions)
+                {
+                    if (CheckPotionReplicaOrDiscovery(potion.Ingredients, mixture.Recipe.Ingredients))
+                    {
+                        potion.BrewingStatus = BrewingStatus.Replica;
+                        return potion;
+                    }
+                }
+            }
         }
 
         public async Task<Potion> GetPotionById(long PotionId)
@@ -45,9 +58,10 @@ namespace HogwartsPotions.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public Task<List<Potion>> GetPotionByStudentId(long studentId)
+        public async Task<List<Potion>> GetPotionByStudentId(long studentId)
         {
-            throw new System.NotImplementedException();
+            var potions = await _context.Potions.Where(p => p.Student.ID == studentId).ToListAsync();
+            return potions;
         }
 
         public Task AddIngredientToPotion(long potionId, Ingredient ingredient)
@@ -59,5 +73,11 @@ namespace HogwartsPotions.Data.Repositories
         {
             throw new System.NotImplementedException();
         }
+
+        private bool CheckPotionReplicaOrDiscovery(HashSet<Ingredient> newIngredients, HashSet<Ingredient> ingredients)
+        {
+            return newIngredients.SequenceEqual(ingredients);
+        }
+
     }
 }

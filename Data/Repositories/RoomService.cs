@@ -51,14 +51,8 @@ namespace HogwartsPotions.Data.Repositories
         public async Task DeleteRoom(long id)
         {
             var roomToDelete = _context.Rooms.FirstOrDefaultAsync(r => r.ID == id).Result;
-            if (roomToDelete != null)
-            {
-                
-                _context.Rooms.Remove(roomToDelete);
+            
 
-            }
-
-            await _context.SaveChangesAsync();
         }
 
         public async Task<List<Room>> GetRoomsForRatOwners()
