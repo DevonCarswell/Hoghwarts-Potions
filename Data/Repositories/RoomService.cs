@@ -19,19 +19,19 @@ namespace HogwartsPotions.Data.Repositories
         }
         public async Task AddRoom(Room room)
         {
-            _context.Rooms.Add(room);
+            await _context.Rooms.AddAsync(room);
             await _context.SaveChangesAsync();
 
         }
 
-        public Task<Room> GetRoom(long roomId)
+        public async Task<Room> GetRoom(long roomId)
         {
-            return _context.Rooms.FirstOrDefaultAsync(r => r.ID == roomId);
+            return await _context.Rooms.FirstOrDefaultAsync(r => r.ID == roomId);
         }
 
-        public Task<List<Room>> GetAllRooms()
+        public async Task<List<Room>> GetAllRooms()
         {
-            return _context.Rooms.ToListAsync();
+            return await _context.Rooms.ToListAsync();
         }
 
         public void UpdateRoom(long id, Room room)
@@ -50,8 +50,13 @@ namespace HogwartsPotions.Data.Repositories
 
         public async Task DeleteRoom(long id)
         {
-            var roomToDelete = _context.Rooms.FirstOrDefaultAsync(r => r.ID == id).Result;
-            
+            var roomToDelete = await GetRoom(id);
+            if (roomToDelete != null)
+            {
+                _context.Rooms.Remove(roomToDelete);
+                await _context.SaveChangesAsync();
+            }
+
 
         }
 

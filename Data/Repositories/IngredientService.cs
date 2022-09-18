@@ -14,25 +14,35 @@ namespace HogwartsPotions.Data.Repositories
     {
         private readonly HogwartsContext _context;
 
-
-        public Task AddIngredient(Ingredient Ingredient)
+        public IngredientService(HogwartsContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task<Ingredient> GetIngredient(long IngredientId)
+        public async Task AddIngredient(Ingredient ingredient)
         {
-            throw new NotImplementedException();
+            await _context.Ingredients.AddAsync(ingredient);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<List<Ingredient>> GetAllIngredients()
+        public async Task<Ingredient> GetIngredient(long ingredientId)
         {
-            throw new NotImplementedException();
+            return await _context.Ingredients.FirstOrDefaultAsync(i => i.Id == ingredientId);
         }
 
-        public Task DeleteIngredient(long id)
+        public async Task<List<Ingredient>> GetAllIngredients()
         {
-            throw new NotImplementedException();
+            return await _context.Ingredients.ToListAsync();
+        }
+
+        public async Task DeleteIngredient(long id)
+        {
+            var ingredientToDelete = await GetIngredient(id);
+            if (ingredientToDelete is not null)
+            {
+                _context.Ingredients.Remove(ingredientToDelete);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }
