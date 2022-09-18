@@ -18,7 +18,7 @@ namespace HogwartsPotions.Data.Repositories
         }
         public async Task AddStudent(Student Student)
         {
-            _context.Students.Add(Student);
+            await _context.Students.AddAsync(Student);
             await _context.SaveChangesAsync();
 
         }

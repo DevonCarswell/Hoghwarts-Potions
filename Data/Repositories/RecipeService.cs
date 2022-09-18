@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using HogwartsPotions.Interfaces;
 using HogwartsPotions.Models.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HogwartsPotions.Data.Repositories
 {
@@ -13,24 +14,30 @@ namespace HogwartsPotions.Data.Repositories
         {
             _context = context;
         }
-        public Task AddRecipe(Recipe Recipe)
+        public async Task AddRecipe(Recipe recipe)
         {
-            throw new System.NotImplementedException();
+            await _context.AddAsync(recipe);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<Recipe> GetRecipe(long RecipeId)
+        public async Task<Recipe> GetRecipe(long recipeId)
         {
-            throw new System.NotImplementedException();
+            return await _context.Recipes.FirstOrDefaultAsync(r => r.Id == recipeId);
         }
 
-        public Task<List<Recipe>> GetAllRecipes()
+        public async Task<List<Recipe>> GetAllRecipes()
         {
-            throw new System.NotImplementedException();
+            return await _context.Recipes.ToListAsync();
         }
 
-        public Task DeleteRecipe(long id)
+        public async Task DeleteRecipe(long recipeId)
         {
-            throw new System.NotImplementedException();
+            var recipeToDelete = await GetRecipe(recipeId);
+            if (recipeToDelete is not null)
+            {
+                _context.Recipes.Remove(recipeToDelete);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

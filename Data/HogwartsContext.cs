@@ -28,8 +28,12 @@ namespace HogwartsPotions.Data
             modelBuilder.Entity<Ingredient>().ToTable("Ingredient");
             modelBuilder.Entity<Potion>().ToTable("Potion");
             modelBuilder.Entity<Room>().Navigation(r => r.Residents).AutoInclude();
+            modelBuilder.Entity<Student>().Navigation(s => s.Room).AutoInclude();
             modelBuilder.Entity<Potion>().Navigation(p => p.Ingredients).AutoInclude();
+            modelBuilder.Entity<Potion>().Navigation(p => p.Student).AutoInclude();
+            modelBuilder.Entity<Potion>().Navigation(p => p.Recipe).AutoInclude();
             modelBuilder.Entity<Recipe>().Navigation(r => r.Ingredients).AutoInclude();
+            modelBuilder.Entity<Recipe>().Navigation(r => r.Student).AutoInclude();
         }
 
     }
