@@ -101,7 +101,20 @@ namespace HogwartsPotions.Data.Repositories
 
                 potion.Ingredients.Add(ingredient);
                 await _context.SaveChangesAsync();
+                if (potion.Ingredients.Count == MAX_INGREDIENTS_FOR_POTIONS)
+                {
+                    if (await CheckPotionReplicaOrDiscovery(potion.Ingredients))
+                    {
+                        potion.BrewingStatus = BrewingStatus.Replica;
+                    }
+                    else
+                    {
+                        potion.BrewingStatus = BrewingStatus.Discovery;
+                    }
+                }
             }
+
+            
 
         }
 

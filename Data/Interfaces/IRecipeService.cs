@@ -10,5 +10,6 @@ namespace HogwartsPotions.Interfaces
         Task<Recipe> GetRecipe(long RecipeId);
         Task<List<Recipe>> GetAllRecipes();
         Task DeleteRecipe(long id);
+        Task<List<Recipe>> GetRecipesByPotionId(long potionId);
     }
 }

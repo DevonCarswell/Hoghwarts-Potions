@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using HogwartsPotions.Interfaces;
 using HogwartsPotions.Models.Entities;
@@ -38,6 +39,13 @@ namespace HogwartsPotions.Data.Repositories
                 _context.Recipes.Remove(recipeToDelete);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task<List<Recipe>> GetRecipesByPotionId(long potionId)
+        {
+            var potion = await _context.Potions.FirstOrDefaultAsync(p => p.Id == potionId);
+            return await _context.Recipes.Where(r => r.Ingredients.Any(i => potion.Ingredients.Contains(i)))
+                .ToListAsync();
         }
     }
 }
